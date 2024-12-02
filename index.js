@@ -9,15 +9,7 @@ Challenge:
 
 const tweetInput = document.getElementById('tweet-input')
 
-for (tweet of tweetsData){
-   localStorage.setItem(`nbLikes-${tweet.uuid}`, JSON.stringify(tweet.likes))
-   localStorage.setItem(`nbRetweets-${tweet.uuid}`, JSON.stringify(tweet.retweets))
-   localStorage.setItem(`nbReplies-${tweet.uuid}`, JSON.stringify(tweet.replies.length))
-   let nblik = localStorage.getItem(`nbLikes-${tweet.uuid}`)
-   let nbRetwet = localStorage.getItem(`nbRetweets-${tweet.uuid}`)
-   let nbRepli = localStorage.getItem(`nbReplies-${tweet.uuid}`,
-   console.log(nbLik, nbRetwet, nbRepli)
-}
+
 
 
 document.addEventListener('click', function(e){
@@ -186,13 +178,13 @@ function getFeedHtml(){
                     <i id="replyIcon" class="fa-regular fa-comment-dots ${replyIconClass}"
                     data-reply="${tweet.uuid}"
                     ></i>
-                    ${nbReplies}
+                    ${tweet.replies.length}
                 </span>
                 <span class="tweet-detail">
                     <i class="fa-solid fa-retweet ${retweetIconClass}"
                     data-retweet="${tweet.uuid}"
                     ></i>
-                    ${nbRetweets}
+                    ${tweet.retweets}
                 </span>
                 <span class="tweet-detail">
                     <i class="fa-${likeIconFill} fa-heart ${likeIconClass}"
@@ -218,4 +210,15 @@ function render(){
 }
 
 render()
+
+
+for (tweet of tweetsData){
+   localStorage.setItem(`nbLikes-${tweet.uuid}`, JSON.stringify(tweet.likes))
+   localStorage.setItem(`nbRetweets-${tweet.uuid}`, JSON.stringify(tweet.retweets))
+   localStorage.setItem(`nbReplies-${tweet.uuid}`, JSON.stringify(tweet.replies.length))
+   let nblik = localStorage.getItem(`nbLikes-${tweet.uuid}`)
+   let nbRetwet = localStorage.getItem(`nbRetweets-${tweet.uuid}`)
+   let nbRepli = localStorage.getItem(`nbReplies-${tweet.uuid}`,
+   console.log(nbLik, nbRetwet, nbRepli)
+}
 
