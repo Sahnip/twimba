@@ -9,9 +9,11 @@ Challenge:
 
 const tweetInput = document.getElementById('tweet-input')
 
-localStorage.setItem('nbLikes', JSON.stringify(targetTweetObj.likes))
-localStorage.setItem('nbRetweets', JSON.stringify(targetTweetObj.retweets))
-localStorage.setItem('nbReplies', JSON.stringify(targetTweetObj.replies.length))
+for (tweet of tweetsData){
+   localStorage.setItem(`nbLikes-${tweet.uuid}`, JSON.stringify(tweet.likes))
+   localStorage.setItem(`nbRetweets-${tweet.uuid}`, JSON.stringify(tweet.retweets))
+   localStorage.setItem(`nbReplies-${tweet.uuid}`, JSON.stringify(tweet.replies.length))
+}
 
 
 document.addEventListener('click', function(e){
@@ -43,7 +45,7 @@ function handleLikeClick(tweetId){
     else{
         targetTweetObj.likes++ 
     }
-   localStorage.setItem('nbLikes', JSON.stringify(targetTweetObj.likes))
+    localStorage.setItem(`nbLikes-${targetTweetObj.uuid}`, JSON.stringify(targetTweetObj.likes))
     targetTweetObj.isLiked = !targetTweetObj.isLiked
     render()
 }
@@ -59,7 +61,7 @@ function handleRetweetClick(tweetId){
     else{
         targetTweetObj.retweets++
     }
-    localStorage.setItem('nbRetweets', JSON.stringify(targetTweetObj.retweets))
+    localStorage.setItem(`nbLikes-${targetTweetObj.uuid}`, JSON.stringify(targetTweetObj.retweets))
     targetTweetObj.isRetweeted = !targetTweetObj.isRetweeted
     render() 
 }
@@ -111,12 +113,12 @@ Challenge:
 
 function getFeedHtml(){
     let feedHtml = ``
-
-    let nbLikes = localStorage.getItem('nbLikes')
-    let nbRetweets = localStorage.getItem('nbRetweets')
-    let nbReplies = localStorage.getItem('nbReplies')
     
     tweetsData.forEach(function(tweet){
+
+       let nbLikes = localStorage.getItem(`nbLikes-${tweet.uuid}`)
+       let nbRetweets = localStorage.getItem(`nbRetweets-${tweet.uuid}`)
+       let nbReplies = localStorage.getItem(`nbReplies-${tweet.uuid}`)
         
         let likeIconClass = ''
         let likeIconFill = 'regular'
