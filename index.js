@@ -9,6 +9,18 @@ Challenge:
 
 const tweetInput = document.getElementById('tweet-input')
 
+if (!localStorage.getItem('tweetsProcessed')){
+      for (let tweetss of tweetsData){
+      localStorage.setItem(`nbLikes-${tweetss.uuid}`, JSON.stringify(tweetss.likes))
+      localStorage.setItem(`nbRetweets-${tweetss.uuid}`, JSON.stringify(tweetss.retweets))
+      localStorage.setItem(`nbReplies-${tweetss.uuid}`, JSON.stringify(tweetss.replies.length))
+      let nblik = localStorage.getItem(`nbLikes-${tweetss.uuid}`)
+      let nbRetwet = localStorage.getItem(`nbRetweets-${tweetss.uuid}`)
+      let nbRepli = localStorage.getItem(`nbReplies-${tweetss.uuid}`)
+      console.log(nblik, nbRetwet, nbRepli)
+   }
+   localStorage.setItem('tweetsProcessed', 'true')
+}
 
 
 
@@ -212,13 +224,5 @@ function render(){
 render()
 
 
-for (let tweetss of tweetsData){
-   localStorage.setItem(`nbLikes-${tweetss.uuid}`, JSON.stringify(tweetss.likes))
-   localStorage.setItem(`nbRetweets-${tweetss.uuid}`, JSON.stringify(tweetss.retweets))
-   localStorage.setItem(`nbReplies-${tweetss.uuid}`, JSON.stringify(tweetss.replies.length))
-   let nblik = localStorage.getItem(`nbLikes-${tweetss.uuid}`)
-   let nbRetwet = localStorage.getItem(`nbRetweets-${tweetss.uuid}`)
-   let nbRepli = localStorage.getItem(`nbReplies-${tweetss.uuid}`)
-   console.log(nbLik, nbRetwet, nbRepli)
-}
+
 
