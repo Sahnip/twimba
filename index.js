@@ -9,6 +9,10 @@ Challenge:
 
 const tweetInput = document.getElementById('tweet-input')
 
+localStorage.setItem('nbLikes', JSON.stringify(targetTweetObj.likes))
+localStorage.setItem('nbRetweets', JSON.stringify(targetTweetObj.retweets))
+localStorage.setItem('nbReplies', JSON.stringify(targetTweetObj.replies.length))
+
 
 document.addEventListener('click', function(e){
     if(e.target.dataset.like){
@@ -55,6 +59,7 @@ function handleRetweetClick(tweetId){
     else{
         targetTweetObj.retweets++
     }
+    localStorage.setItem('nbRetweets', JSON.stringify(targetTweetObj.retweets))
     targetTweetObj.isRetweeted = !targetTweetObj.isRetweeted
     render() 
 }
@@ -107,7 +112,9 @@ Challenge:
 function getFeedHtml(){
     let feedHtml = ``
 
-   let nbLikes = localStorage.getItem('nbLikes')
+    let nbLikes = localStorage.getItem('nbLikes')
+    let nbRetweets = localStorage.getItem('nbRetweets')
+    let nbReplies = localStorage.getItem('nbReplies')
     
     tweetsData.forEach(function(tweet){
         
@@ -173,13 +180,13 @@ function getFeedHtml(){
                     <i id="replyIcon" class="fa-regular fa-comment-dots ${replyIconClass}"
                     data-reply="${tweet.uuid}"
                     ></i>
-                    ${tweet.replies.length}
+                    ${nbReplies}
                 </span>
                 <span class="tweet-detail">
                     <i class="fa-solid fa-retweet ${retweetIconClass}"
                     data-retweet="${tweet.uuid}"
                     ></i>
-                    ${tweet.retweets}
+                    ${nbRetweets}
                 </span>
                 <span class="tweet-detail">
                     <i class="fa-${likeIconFill} fa-heart ${likeIconClass}"
