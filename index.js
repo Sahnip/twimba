@@ -13,6 +13,10 @@ for (tweet of tweetsData){
    localStorage.setItem(`nbLikes-${tweet.uuid}`, JSON.stringify(tweet.likes))
    localStorage.setItem(`nbRetweets-${tweet.uuid}`, JSON.stringify(tweet.retweets))
    localStorage.setItem(`nbReplies-${tweet.uuid}`, JSON.stringify(tweet.replies.length))
+   let nblik = localStorage.getItem(`nbLikes-${tweet.uuid}`)
+   let nbRetwet = localStorage.getItem(`nbRetweets-${tweet.uuid}`)
+   let nbRepli = localStorage.getItem(`nbReplies-${tweet.uuid}`,
+   console.log(nbLik, nbRetwet, nbRepli)
 }
 
 
