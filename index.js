@@ -39,6 +39,7 @@ function handleLikeClick(tweetId){
     else{
         targetTweetObj.likes++ 
     }
+   localStorage.setItem('nbLikes', JSON.stringify(targetTweetObj.likes))
     targetTweetObj.isLiked = !targetTweetObj.isLiked
     render()
 }
@@ -105,6 +106,8 @@ Challenge:
 
 function getFeedHtml(){
     let feedHtml = ``
+
+   let nbLikes = localStorage.getItem('nbLikes')
     
     tweetsData.forEach(function(tweet){
         
@@ -182,7 +185,7 @@ function getFeedHtml(){
                     <i class="fa-${likeIconFill} fa-heart ${likeIconClass}"
                     data-like="${tweet.uuid}"
                     ></i>
-                    ${tweet.likes}
+                    ${nbLikes}
                 </span>
             </div>   
         </div>            
