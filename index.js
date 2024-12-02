@@ -6,7 +6,7 @@ Challenge:
 3. We could improve index.js by moving one line
    of code to a better position. Find it and move it!
 */
-
+localStorage.clear();
 const tweetInput = document.getElementById('tweet-input')
 
 if (!localStorage.getItem('tweetsProcessed')){
